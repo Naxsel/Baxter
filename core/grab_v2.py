@@ -92,8 +92,6 @@ limb_right.move_to_joint_positions(wave_pre4_RGrab)
 limb_right.move_to_joint_positions(wave_pre3_RGrab)
 limb_right.set_joint_position_speed(0.3)
 
-# limb_right.move_to_joint_positions(wave_pre2_RGrab)
-# limb_right.move_to_joint_positions(wave_pre1_RGrab)
 limb_right.move_to_neutral()
 
 
