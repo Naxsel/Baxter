@@ -6,6 +6,7 @@ Move the arms to neutral position.
 
 import rospy
 import baxter_interface
+from baxter_interface import CHECK_VERSION
 
 rospy.init_node("Hello_Baxter")
 limb_right = baxter_interface.Limb("right")
