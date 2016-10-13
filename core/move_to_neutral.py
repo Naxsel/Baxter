@@ -14,13 +14,29 @@ gripper_right = baxter_interface.Gripper("right")
 gripper_left = baxter_interface.Gripper("left")
 head = baxter_interface.Head()
 
+# Verify Grippers Have No Errors and are Calibrated
+if gripper_left.error():
+    gripper_left.reset()
+if gripper_right.error():
+    gripper_right.reset()
+if (not gripper_left.calibrated() and
+            gripper_left.type() != 'custom'):
+    gripper_left.calibrate()
+if (not gripper_right.calibrated() and
+            gripper_right.type() != 'custom'):
+    gripper_right.calibrate()
+
+gripper_right.open()
+gripper_left.open()
+
+rospy.sleep(1)
+
 limb_left.set_joint_position_speed(1)
 limb_right.set_joint_position_speed(1)
 
 limb_right.move_to_neutral()
 limb_left.move_to_neutral()
 
-gripper_right.open()
-gripper_left.open()
+
 
 head.set_pan(0.0)

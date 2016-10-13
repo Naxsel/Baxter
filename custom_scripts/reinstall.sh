@@ -15,8 +15,10 @@ source /opt/ros/indigo/setup.bash
 cd ~/ros_ws
 catkin_make
 catkin_make install
+mkdir -p ~/ros_ws/src/baxter_examples/scripts/Alex
 cp ~/Dropbox/JetBrains/Baxter/baxter.sh .
-cp ~/Dropbox/JetBrains/Baxter/core/AB.py ~/ros_ws/src/baxter_examples/scripts/
-cp ~/Dropbox/JetBrains/Baxter/core/move_to_neutral.py ~/ros_ws/src/baxter_examples/scripts/
+cp ~/Dropbox/JetBrains/Baxter/custom_scripts/startStop.sh .
+cp ~/Dropbox/JetBrains/Baxter/core/* ~/ros_ws/src/baxter_examples/scripts/Alex
+
 
 
