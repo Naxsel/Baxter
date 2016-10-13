@@ -32,8 +32,8 @@ gripper_left.open()
 
 rospy.sleep(1)
 
-limb_left.set_joint_position_speed(1)
-limb_right.set_joint_position_speed(1)
+limb_left.set_joint_position_speed(0.3)
+limb_right.set_joint_position_speed(0.3)
 
 limb_right.move_to_neutral()
 limb_left.move_to_neutral()
