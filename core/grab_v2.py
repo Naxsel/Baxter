@@ -51,8 +51,6 @@ limb_right.set_joint_position_speed(0.6)
 limb_right.move_to_neutral()
 limb_left.move_to_neutral()
 
-limb_left.set_joint_position_speed(0.1)
-limb_right.set_joint_position_speed(0.1)
 
 angles_right = limb_right.joint_angles()
 
@@ -69,7 +67,9 @@ limb_right.move_to_joint_positions(wave_pre2_RGrab)
 wave_pre3_RGrab = {'right_s0': 0.220126243062, 'right_s1': -0.147645650834, 'right_e0': 0.132689338152,
                 'right_e1': 0.867466135549, 'right_w0': 0.53305832379, 'right_w1': 1.57884972593, 'right_w2': 0.704864172033}
 limb_right.move_to_joint_positions(wave_pre3_RGrab)
-#
+
+limb_right.set_joint_position_speed(0.1)
+
 wave_pre4_RGrab = {'right_s0': 0.209388377546, 'right_s1': -0.00690291354548, 'right_e0': 0.256174791577,
                 'right_e1': 0.866315649958, 'right_w0': 0.604388430427, 'right_w1': 1.58153419231, 'right_w2': 0.675335041867}
 limb_right.move_to_joint_positions(wave_pre4_RGrab)
@@ -82,7 +82,7 @@ rospy.sleep(0.5)
 
 gripper_right.command_position(17.6661262512)
 
-rospy.sleep(1)
+rospy.sleep(3)
 
 gripper_right.command_position(96.1102142334)
 
@@ -90,8 +90,10 @@ rospy.sleep(0.5)
 
 limb_right.move_to_joint_positions(wave_pre4_RGrab)
 limb_right.move_to_joint_positions(wave_pre3_RGrab)
-limb_right.move_to_joint_positions(wave_pre2_RGrab)
-limb_right.move_to_joint_positions(wave_pre1_RGrab)
+limb_right.set_joint_position_speed(0.3)
+
+# limb_right.move_to_joint_positions(wave_pre2_RGrab)
+# limb_right.move_to_joint_positions(wave_pre1_RGrab)
 limb_right.move_to_neutral()
 
 
