@@ -43,8 +43,8 @@ print("Moving to starting position")
 
 gripper_right.open()
 gripper_left.open()
-gripper_right.set_holding_force(70)
-gripper_left.set_holding_force(70)
+gripper_right.set_holding_force(60)
+gripper_left.set_holding_force(600)
 gripper_right.set_velocity(20)
 gripper_left.set_velocity(20)
 
@@ -81,7 +81,7 @@ wave_RGrab = {'right_s0': 0.164902934698, 'right_s1': 0.430281611002, 'right_e0'
                 'right_e1': 0.508898126381, 'right_w0': 0.559135997184, 'right_w1': 1.72879634795, 'right_w2': 0.602087459245}
 limb_right.move_to_joint_positions(wave_RGrab)
 
-rospy.sleep(0.5)
+rospy.sleep(3)
 
 gripper_right.command_position(17.6661262512)
 
@@ -96,6 +96,10 @@ wave_post2_RGrab = {'right_s0': -0.039500005288, 'right_s1': 0.363936941926, 'ri
                 'right_e1': 1.24981084693, 'right_w0': -0.308713633562, 'right_w1': 1.05844674364, 'right_w2': 1.28892735702}
 limb_right.move_to_joint_positions(wave_post2_RGrab)
 
+wave_post3_RGrab = {'right_s0': -0.0525388419851, 'right_s1': 0.401902966426, 'right_e0': 1.54050020623,
+                'right_e1': 1.4058933921, 'right_w0': -0.390781605714, 'right_w1': 1.06803412357, 'right_w2': 1.38403416587}
+limb_right.move_to_joint_positions(wave_post3_RGrab)
+
 print("Left arm to position")
 limb_left.set_joint_position_speed(0.1)
 
@@ -103,29 +107,29 @@ wave_pre1_LGrab = {'left_s0': -0.548781626866, 'left_s1': -1.05346130608, 'left_
                    'left_e1': 1.11213607122, 'left_w0': -0.094339818455, 'left_w1': 1.55047108136, 'left_w2': 0.11773302547}
 limb_left.move_to_joint_positions(wave_pre1_LGrab)
 
-wave_pre2_LGrab = {'left_s0': -0.798820495291, 'left_s1': -1.05614577246, 'left_e0': -0.234699060546,
-                   'left_e1': 1.20, 'left_w0': 0.039883500485, 'left_w1': 1.34300017979, 'left_w2': -0.28992236891}
+wave_pre2_LGrab = {'left_s0': -0.474000063457, 'left_s1': -1.22680113511, 'left_e0': -0.433349572578,
+                   'left_e1': 1.40896135367, 'left_w0': 0.0974077800307, 'left_w1': 1.46610213802, 'left_w2': -0.193665074471}
 limb_left.move_to_joint_positions(wave_pre2_LGrab)
 
-wave_pre3_LGrab = {'left_s0': -0.91425254958, 'left_s1': -0.979063237868, 'left_e0': -0.29759227285,
-                   'left_e1': 1.24827686614, 'left_w0': 0.167587401076, 'left_w1': 1.31193706884, 'left_w2': -0.486655404957}
+wave_pre3_LGrab = {'left_s0': -0.295291301668, 'left_s1': -0.733626311806, 'left_e0': -1.38671863225,
+                   'left_e1': 1.40014096414, 'left_w0': 0.793835057731, 'left_w1': 1.51173806646, 'left_w2': -0.90660319034}
 limb_left.move_to_joint_positions(wave_pre3_LGrab)
 
-# wave_LGrab = {'left_s0': -0.931509833443, 'left_s1': -0.911568083201, 'left_e0': -0.290689359304,
-#                    'left_e1': 1.19612151935, 'left_w0': 0.164135944304, 'left_w1': 1.31807299199, 'left_w2': -0.530757352608}
-# limb_left.move_to_joint_positions(wave_LGrab)
+wave_LGrab = {'left_s0': -0.369305874683, 'left_s1': -0.804956418443, 'left_e0': -1.17848074029,
+                   'left_e1': 1.44539339739, 'left_w0': 0.686839897776, 'left_w1': 1.37828173792, 'left_w2': -0.921538958322}
+limb_left.move_to_joint_positions(wave_LGrab)
+
+# rospy.sleep(1.5)
 #
-# rospy.sleep(0.5)
-#
-# gripper_left.command_position(16.8012924194)
+# gripper_left.command_position(16.4397418976)
 #
 # print("Opening")
 #
 # rospy.sleep(0.5)
-# limb_left.set_joint_position_speed(0.3)
+# limb_left.set_joint_position_speed(0.1)
 #
-# wave_post1_LGrab = {'left_s0': -0.894310799337, 'left_s1': -0.994786540944, 'left_e0': -0.330956354986,
-#                    'left_e1': 1.10906810964, 'left_w0': 0.159150506743, 'left_w1': 1.47147107078, 'left_w2': -0.475150549048}
+# wave_post1_LGrab = {'left_s0': -0.952602069277, 'left_s1': -0.952985564474, 'left_e0': -0.283019455365,
+#                    'left_e1': 0.969475857944, 'left_w0': 0.16336895391, 'left_w1': 1.60377691373, 'left_w2': -0.501995212836}
 # limb_left.move_to_joint_positions(wave_post1_LGrab)
 
 
