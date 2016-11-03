@@ -2,10 +2,11 @@
 
 import socket               # Import socket module
 
-s = socket.socket()         # Create a socket object
-host = socket.gethostname() # Get local machine name
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)        # Create a socket object
+ip = '192.168.1.50'         # Get local machine name
 port = 8080                 # Reserve a port for your service.
 
-s.connect((host, port))
+s.connect((ip, port))
 print s.recv(1024)
+print "Conected to Baxter!"
 s.close                     # Close the socket when done
