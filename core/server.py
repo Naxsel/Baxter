@@ -3,7 +3,7 @@
 import socket               # Import socket module
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # Create a socket object
-ip = '192.168.1.50'  # Get local machine name
+ip = '192.168.1.52'  # Get local machine name
 print ip
 port = 8080                 # Reserve a port for your service.
 serversocket.bind((ip, port))        # Bind to the port
