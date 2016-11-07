@@ -1,9 +1,5 @@
 #!/usr/bin/env python       # This is server.py file
 
-"""
-Main Server
-"""
-
 import socket               # Import socket module
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # Create a socket object

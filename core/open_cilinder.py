@@ -17,9 +17,6 @@ rs = baxter_interface.RobotEnable(CHECK_VERSION)
 print("Enabling robot... ")
 rs.enable()
 
-
-
-
 limb_right = baxter_interface.Limb("right")
 limb_left = baxter_interface.Limb("left")
 gripper_right = baxter_interface.Gripper("right")
@@ -79,10 +76,6 @@ gripper_right.command_position(21.2317657471)
 
 rospy.sleep(1)
 
-# wave_post1_RGrab = {'right_s0': -0.0444854428487, 'right_s1': 0.498160260866, 'right_e0': 0.902364198474,
-#                 'right_e1': 0.697961258488, 'right_w0': 0.166820410683, 'right_w1': 1.58690312507, 'right_w2': 0.623946685472}
-# limb_right.move_to_joint_positions(wave_post1_RGrab)
-
 wave_post1_RGrab = {'right_s0': 0.136140794925, 'right_s1': 0.432966077381, 'right_e0': 0.619344743109,
                 'right_e1': 0.536509780563, 'right_w0': 0.506213660002, 'right_w1': 1.75410703095, 'right_w2': 0.607072896806}
 limb_right.move_to_joint_positions(wave_post1_RGrab)
@@ -107,7 +100,6 @@ limb_left.move_to_joint_positions(wave_LGrab)
 rospy.sleep(2.5)
 
 gripper_left.command_position(16.9628429413)
-
 
 rospy.sleep(1)
 
