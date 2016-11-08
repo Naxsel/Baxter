@@ -37,8 +37,8 @@ def neutral():
     gripper_right.open()
     rospy.sleep(1)
 
-    limb_left.set_joint_position_speed(0.2)
-    limb_right.set_joint_position_speed(0.2)
+    limb_left.set_joint_position_speed(0.4)
+    limb_right.set_joint_position_speed(0.4)
 
     limb_right.move_to_neutral()
     limb_left.move_to_neutral()
