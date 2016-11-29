@@ -1,3 +1,5 @@
+import time
+
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.properties import ObjectProperty
@@ -17,8 +19,11 @@ Builder.load_string('''
             tab: tab1
             Button:
                 text: 'Slide one'
+                always_release: True
+                on_press: app.do_sleep()
             Button:
                 text: 'Slide 4'
+                on_press: print "Slide 4 pressed"
         Button:
             text: 'Slide Two'
             tab: tab2
@@ -57,11 +62,17 @@ class RootWidget(TabbedPanel):
         self.carousel.index = header.slide
 
 
-class MainApp(App):
+class BaxterGUIApp(App):
 
     def build(self):
         return RootWidget()
 
+    def do_sleep(self):
+        App.get_running_app().root.disabled = False
+        time.sleep(2)
+
+        # App.get_running_app().root.disabled= False
+
 
 if __name__ == '__main__':
-    MainApp().run()
+    BaxterGUIApp().run()
