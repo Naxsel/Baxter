@@ -8,12 +8,12 @@ Test of the widget TabbedPanel.
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.lang import Builder
+from kivy.uix.gridlayout import GridLayout
+
 
 Builder.load_string("""
 
 <Test>:
-    size_hint: .5, .5
-    pos_hint: {'center_x': .5, 'center_y': .5}
     do_default_tab: False
 
     TabbedPanelItem:
@@ -22,11 +22,14 @@ Builder.load_string("""
             text: 'First tab content area'
     TabbedPanelItem:
         text: 'tab2'
-        BoxLayout:
+        GridLayout:
+            cols: 3
             Label:
                 text: 'Second tab content area'
             Button:
                 text: 'Button that does nothing'
+            Button:
+                text: 'Button that does something'
     TabbedPanelItem:
         text: 'tab3'
         RstDocument:
