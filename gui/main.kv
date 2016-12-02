@@ -1,0 +1,40 @@
+#:import ft kivy.uix.screenmanager
+
+ScreenManagement:
+    transition: ft.WipeTransition()
+    ConnectionScreen:
+    MainScreen:
+
+<ConnectionScreen>:
+    name: 'Connection'
+
+    Button:
+        on_release: app.root.current = 'main'
+        text: 'Connect to the baxter'
+        font_size: 50
+
+<MainScreen>:
+    name: 'main'
+    TabbedPanel:
+        do_default_tab: False
+        tab_pos: 'top_mid'
+        tab_width: 750/3
+        TabbedPanelItem:
+            text: 'Baxter Essentials'
+            BoxLayout:
+                orientation: 'horizontal'
+                Button:
+                    text: 'Disconnect'
+                    size_hint: .5,1
+                    on_release: app.root.current = 'Connection'
+                Button:
+                    text: 'Slide 4'
+                    on_press: print "Slide 4 pressed"
+        TabbedPanelItem:
+            text: 'Custom Scripts'
+            Button:
+                text: 'Slide Two'
+        TabbedPanelItem:
+            text: 'About'
+            Button:
+                text: 'Slide three'
