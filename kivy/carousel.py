@@ -1,25 +1,33 @@
 import time
+import kivy
+kivy.require('1.9.1')
+
 
 from kivy.app import App
+from kivy.properties import StringProperty, ObjectProperty,NumericProperty
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.boxlayout import BoxLayout
+
 
 
 Builder.load_string('''
-<RootWidget>:
+<MainMenu>:
     carousel: carousel
     do_default_tab: False
+    tab_pos: 'top_mid'
+    tab_width: 750/3
     Carousel:
         on_index: root.on_index(*args)
         id: carousel
-        GridLayout:
-            cols: 2
+        BoxLayout:
+            orientation: 'horizontal'
             tab: tab1
             Button:
                 text: 'Slide one'
-                always_release: True
+                size_hint: .5,1
                 on_press: app.do_sleep()
             Button:
                 text: 'Slide 4'
@@ -33,19 +41,20 @@ Builder.load_string('''
 
     TabbedPanelItem:
         id: tab1
-        text: 'tab1'
+        text: 'Baxter Essentials'
         slide: 0
+
     TabbedPanelItem:
         id: tab2
-        text: 'tab2'
+        text: 'Custom Scripts'
         slide: 1
     TabbedPanelItem:
         id: tab3
-        text: 'tab 3'
+        text: 'About'
         slide: 2
 ''')
 
-class RootWidget(TabbedPanel):
+class MainMenu(TabbedPanel):
 
     def on_index(self, instance, value):
         tab = instance.current_slide.tab
@@ -65,7 +74,7 @@ class RootWidget(TabbedPanel):
 class BaxterGUIApp(App):
 
     def build(self):
-        return RootWidget()
+        return MainMenu()
 
     def do_sleep(self):
         App.get_running_app().root.disabled = False
