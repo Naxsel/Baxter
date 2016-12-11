@@ -7,7 +7,6 @@ ScreenManagement:
 
 <ConnectionScreen>:
     name: 'Connection'
-
     Button:
         on_release: app.root.current = 'main'
         text: 'Connect to the baxter'
@@ -15,10 +14,11 @@ ScreenManagement:
 
 <MainScreen>:
     name: 'main'
+    id: 'mainscr'
     TabbedPanel:
         do_default_tab: False
         tab_pos: 'top_mid'
-        tab_width: 750/3
+        tab_width: self.size[0]/len(self.tab_list)
         TabbedPanelItem:
             text: 'Baxter Essentials'
             BoxLayout:

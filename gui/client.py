@@ -1,3 +1,5 @@
+
+import socket
 import time
 import kivy
 kivy.require('1.9.1')
@@ -10,6 +12,11 @@ from kivy.properties import StringProperty, ObjectProperty,NumericProperty
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
+
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Create a socket object
+ip = 'localhost'  # Get local machine name
+port = 8080  # Reserve a port for your service.
 
 class MainScreen(Screen):
     def on_index(self, instance, value):
@@ -28,7 +35,11 @@ class MainScreen(Screen):
 
 
 class ConnectionScreen(Screen):
-    pass
+    def connect(self):
+        s.connect((ip, port))
+        print s.recv(1024)
+
+
 
 class ScreenManagement(ScreenManager):
     pass
