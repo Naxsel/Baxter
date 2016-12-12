@@ -25,15 +25,27 @@ ScreenManagement:
                 orientation: 'horizontal'
                 Button:
                     text: 'Disconnect'
-                    size_hint: .5,1
+                    size_hint: .4,1
                     on_release: root.disconnect()
                 Button:
                     text: 'Slide 4'
                     on_press: print "Slide 4 pressed"
         TabbedPanelItem:
             text: 'Custom Scripts'
-            Button:
-                text: 'Slide Two'
+            BoxLayout:
+                orientation: 'horizontal'
+                BoxLayout:
+                    size_hint: .4,1
+                    orientation: 'vertical'
+                    Button:
+                        text: 'List of Scripts'
+                    Button:
+                        text: 'Open Cilinder'
+                BoxLayout:
+                    orientation: 'vertical'
+                    Button:
+                        text: 'Demo program, which shows how Baxter can disassemble a cilinder and store the pieces'
+                        on_press: print "Slide 4 pressed"
         TabbedPanelItem:
             text: 'About'
             Button:

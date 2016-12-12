@@ -1,8 +1,9 @@
 #!/usr/bin/env python       # This is server.py file
 
 import socket               # Import socket module
-import baxter_custom        # Import custom scripts for Baxter
-import baxter_essentials    # Import Baxter Essentials
+import thread
+from gui import baxter_custom
+from gui import baxter_essentials
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # Create a socket object
 ip = 'localhost'  # Get local machine name
@@ -24,7 +25,7 @@ while True:
         #     c.send("ok\n")
         if num == "1":
             print 1
-            baxter_custom.open_cilinder.run()
+            thread.start_new_thread(baxter_custom.open_cilinder.run())
         elif num == "2":
             print 2
     print("Disconnected")
