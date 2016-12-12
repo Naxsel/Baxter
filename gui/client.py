@@ -38,6 +38,10 @@ class MainScreen(Screen):
         self.parent.current="Connection"
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # reset socket object
 
+    def open_cilinder(self):
+        global s
+        s.send("1")
+
 class ConnectionScreen(Screen):
     def connect(self):
         global s

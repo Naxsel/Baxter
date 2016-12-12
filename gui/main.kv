@@ -43,9 +43,18 @@ ScreenManagement:
                         text: 'Open Cilinder'
                 BoxLayout:
                     orientation: 'vertical'
+                    Label:
+                        text: 'Demo program, which shows how Baxter\ncan disassemble a cilinder and store the pieces'
+                        text_size: self.size
+                        halign: 'center'
+                        valign: 'middle'
+                        size_hint: 1,2
                     Button:
-                        text: 'Demo program, which shows how Baxter can disassemble a cilinder and store the pieces'
-                        on_press: print "Slide 4 pressed"
+                        text: 'Run'
+                        on_release:
+                        halign: 'center'
+
+
         TabbedPanelItem:
             text: 'About'
             Button:
