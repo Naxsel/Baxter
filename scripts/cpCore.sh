@@ -10,6 +10,6 @@ chmod +x ~/shared/core/*
 chmod +x ~/shared/gui/*
 chmod +x ~/shared/gui/baxter_custom/*
 chmod +x ~/shared/gui/baxter_essentials/*
-cp ~/shared/core/* ~/ros_ws/src/baxter_examples/scripts/Alex
-cp ~/shared/gui/* ~/ros_ws/src/baxter_examples/scripts/gui
+#cp ~/shared/core/* ~/ros_ws/src/baxter_examples/scripts/Alex
+cp -r ~/shared/gui/* ~/ros_ws/src/baxter_examples/scripts/gui
 
