@@ -1,15 +1,18 @@
 #!/usr/bin/env python       # This is server.py file
 
 import socket               # Import socket module
+import baxter_custom        # Import custom scripts for Baxter
+import baxter_essentials    # Import Baxter Essentials
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # Create a socket object
 ip = 'localhost'  # Get local machine name
-print ip
+# print ip
 port = 8080                 # Reserve a port for your service.
 serversocket.bind((ip, port))        # Bind to the port
 
 serversocket.listen(5)                 # Now wait for client connection.
 while True:
+    print("Waiting for Connection...")
     c, addr = serversocket.accept()     # Establish connection with client.
     print 'Got connection from', addr
     c.send("connected");
@@ -21,6 +24,7 @@ while True:
         #     c.send("ok\n")
         if num == "1":
             print 1
+            baxter_custom.open_cilinder.run()
         elif num == "2":
             print 2
     print("Disconnected")

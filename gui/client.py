@@ -31,14 +31,19 @@ class MainScreen(Screen):
         self._current_tab = header
 
     def disconnect(self):
+        global s
         s.send("0")
         s.close()
         print ("Closed Connection")
         self.parent.current="Connection"
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # reset socket object
 
 class ConnectionScreen(Screen):
     def connect(self):
+        global s
+        print ("Connecting to the Baxter...")
         s.connect((ip, port))
+        print ("hola")
         print s.recv(1024)
         self.parent.current = "main"
 
