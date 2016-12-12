@@ -8,7 +8,7 @@ ScreenManagement:
 <ConnectionScreen>:
     name: 'Connection'
     Button:
-        on_release: app.root.current = 'main'
+        on_release: root.connect()
         text: 'Connect to the baxter'
         font_size: 50
 
@@ -26,7 +26,7 @@ ScreenManagement:
                 Button:
                     text: 'Disconnect'
                     size_hint: .5,1
-                    on_release: app.root.current = 'Connection'
+                    on_release: root.disconnect()
                 Button:
                     text: 'Slide 4'
                     on_press: print "Slide 4 pressed"

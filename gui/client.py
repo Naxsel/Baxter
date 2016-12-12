@@ -29,17 +29,18 @@ class MainScreen(Screen):
         self.current_tab.state = "normal"
         header.state = 'down'
         self._current_tab = header
-        # set the carousel to load  the appropriate slide
-        # saved in the screen attribute of the tab head
-        self.carousel.index = header.slide
 
+    def disconnect(self):
+        s.send("0")
+        s.close()
+        print ("Closed Connection")
+        self.parent.current="Connection"
 
 class ConnectionScreen(Screen):
     def connect(self):
         s.connect((ip, port))
         print s.recv(1024)
-
-
+        self.parent.current = "main"
 
 class ScreenManagement(ScreenManager):
     pass
