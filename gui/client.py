@@ -15,7 +15,7 @@ from kivy.uix.boxlayout import BoxLayout
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Create a socket object
-ip = 'localhost'  # Get local machine name
+ip = '192.168.1.54'  # Get local machine name
 port = 8080  # Reserve a port for your service.
 
 class MainScreen(Screen):
@@ -41,6 +41,7 @@ class MainScreen(Screen):
     def open_cilinder(self):
         global s
         s.send("1")
+        s.recv(1024)
 
 class ConnectionScreen(Screen):
     def connect(self):

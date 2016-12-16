@@ -1,12 +1,13 @@
-#!/usr/bin/env python       # This is server.py file
+#!/usr/bin/env python
 
 import socket               # Import socket module
 import thread
-from gui import baxter_custom
-from gui import baxter_essentials
+import rospy
+from baxter_custom import open_cilinder
+import baxter_essentials
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # Create a socket object
-ip = 'localhost'  # Get local machine name
+ip = '192.168.1.54'  # Get local machine name
 # print ip
 port = 8080                 # Reserve a port for your service.
 serversocket.bind((ip, port))        # Bind to the port
@@ -24,9 +25,9 @@ while True:
         # if num!="0":
         #     c.send("ok\n")
         if num == "1":
-            print 1
-            thread.start_new_thread(baxter_custom.open_cilinder.run())
+            print "Running open cilinder program"
             c.send("ok")
+            thread.start_new_thread(open_cilinder.run(), [])
         elif num == "2":
             print 2
     print("Disconnected")

@@ -16,6 +16,7 @@ ScreenManagement:
     name: 'main'
     id: 'mainscr'
     TabbedPanel:
+        orientation: 'vertical'
         do_default_tab: False
         tab_pos: 'top_mid'
         tab_width: self.size[0]/len(self.tab_list)
@@ -53,7 +54,7 @@ ScreenManagement:
                         text: 'Run'
                         on_release:
                         halign: 'center'
-
+                        on_release: root.open_cilinder()
 
         TabbedPanelItem:
             text: 'About'
