@@ -43,6 +43,10 @@ class MainScreen(Screen):
         s.send("1")
         s.recv(1024)
 
+    def send2(self):
+        global s
+        s.send("2")
+
 class ConnectionScreen(Screen):
     def connect(self):
         global s
