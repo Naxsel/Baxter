@@ -12,10 +12,14 @@ from kivy.properties import StringProperty, ObjectProperty,NumericProperty
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.actionbar import ActionBar
+from kivy.uix.actionbar import ActionView
+from kivy.uix.actionbar import ActionButton
+from kivy.uix.actionbar import ActionPrevious
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Create a socket object
-ip = '192.168.1.54'  # Get local machine name
+ip = 'localhost'  # Get local machine name
 port = 8080  # Reserve a port for your service.
 
 class MainScreen(Screen):
@@ -57,6 +61,9 @@ class ConnectionScreen(Screen):
         self.parent.current = "main"
 
 class ScreenManagement(ScreenManager):
+    pass
+
+class BaxterBar(ActionBar):
     pass
 
 presentation = Builder.load_file("main.kv")

@@ -2,12 +2,13 @@
 
 import socket               # Import socket module
 import thread
-import rospy
-from baxter_custom import open_cilinder
+import time
+# import rospy
+# from baxter_custom import open_cilinder
 import baxter_essentials
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # Create a socket object
-ip = '192.168.1.54'  # Get local machine name
+ip = 'localhost'  # Get local machine name
 # print ip
 port = 8080                 # Reserve a port for your service.
 serversocket.bind((ip, port))        # Bind to the port
@@ -27,7 +28,7 @@ while True:
         if num == "1":
             print "Running open cilinder program"
             c.send("ok")
-            thread.start_new_thread(open_cilinder.run(), [])
+            thread.start_new_thread(time.sleep(5), [])
         elif num == "2":
             print 2
     print("Disconnected")

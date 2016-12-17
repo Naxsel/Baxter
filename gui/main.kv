@@ -1,9 +1,41 @@
 #:import ft kivy.uix.screenmanager
 
-ScreenManagement:
+<BaxterBar>:
+    pos_hint: {'top':1}
+    ActionView:
+        use_separator: True
+        ActionPrevious:
+            title: 'Baxter'
+            with_previous: False
+        ActionOverflow:
+        ActionGroup:
+            text: 'Group1'
+            ActionButton:
+                text: 'Connect'
+                on_release: root.parent.parent.Box1.connect()
+            ActionButton:
+                text: 'Btn0'
+                icon:
+                on_release: root.connect()
+        ActionGroup:
+            disabled:'true'
+            text: 'Group2'
+            ActionButton:
+                text: 'Disconnect'
+            ActionButton:
+                text: 'Btn0'
+                icon:
+        ActionGroup:
+            text: 'Group3'
+            ActionButton:
+                text: 'About'
+            ActionButton:
+                text: 'Btn0'
+                icon:
+
+<ScreenManagement>:
     transition: ft.WipeTransition()
-    ConnectionScreen:
-    MainScreen:
+
 
 <ConnectionScreen>:
     name: 'Connection'
@@ -61,3 +93,13 @@ ScreenManagement:
             text: 'About'
             Button:
                 text: 'Slide three'
+
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        size_hint: 1,.1
+        BaxterBar:
+    AnchorLayout:
+        ScreenManager:
+            ConnectionScreen:
+            MainScreen:
