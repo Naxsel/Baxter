@@ -34,14 +34,6 @@ class MainScreen(Screen):
         header.state = 'down'
         self._current_tab = header
 
-    def disconnect(self):
-        global s
-        s.send("0")
-        s.close()
-        print ("Closed Connection")
-        self.parent.current="Connection"
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # reset socket object
-
     def open_cilinder(self):
         global s
         s.send("1")
@@ -52,33 +44,28 @@ class MainScreen(Screen):
         s.send("2")
 
 class ConnectionScreen(Screen):
+    pass
+
+
+class ScreenManagement(ScreenManager):
     def connect(self):
         global s
         print ("Connecting to the Baxter...")
         s.connect((ip, port))
         print ("hola")
         print s.recv(1024)
-        self.parent.current = "main"
+        self.current = "main"
 
-class ScreenManagement(ScreenManager):
-    pass
+    def disconnect(self):
+        global s
+        s.send("0")
+        s.close()
+        print ("Closed Connection")
+        self.current="Connection"
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # reset socket object
 
 class BaxterBar(ActionBar):
-        def connect(self):
-            global s
-            print ("Connecting to the Baxter...")
-            s.connect((ip, port))
-            print ("hola")
-            print s.recv(1024)
-            self.parent.current = "main"
-
-        def disconnect(self):
-            global s
-            s.send("0")
-            s.close()
-            print ("Closed Connection")
-            self.parent.current="Connection"
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # reset socket object
+    pass
 
 class Baxter(GridLayout):
     pass

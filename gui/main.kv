@@ -12,18 +12,20 @@
             text: 'Group1'
             ActionButton:
                 text: 'Connect'
-                on_release: root.parent.ScreenManager.ConnectionScreen.connect()
+                on_release: root.parent.parent.parent.connect()
             ActionButton:
                 text: 'Btn0'
                 icon:
-                on_release: root.connect()
+                on_release: root.parent.parent.parent.connect()
         ActionGroup:
             disabled:'true'
             text: 'Group2'
             ActionButton:
                 text: 'Disconnect'
+                on_release: root.parent.parent.parent.disconnect()
             ActionButton:
                 text: 'Btn0'
+                on_release: root.parent.parent.parent.disconnect()
                 icon:
         ActionGroup:
             text: 'Group3'
@@ -33,71 +35,76 @@
                 text: 'Btn0'
                 icon:
 
-<ScreenManagement>:
-    transition: ft.WipeTransition()
+
 
 
 <ConnectionScreen>:
     name: 'Connection'
-    Button:
-        on_release: root.connect()
-        text: 'Connect to the baxter'
-        font_size: 50
+    GridLayout:
+        cols:1
+        BaxterBar:
+            size_hint: 1,.1
+        Button:
+            on_release: root.parent.connect()
+            text: 'Connect to the baxter'
+            font_size: 50
 
 <MainScreen>:
     name: 'main'
     id: 'mainscr'
-    TabbedPanel:
-        orientation: 'vertical'
-        do_default_tab: False
-        tab_pos: 'top_mid'
-        tab_width: self.size[0]/len(self.tab_list)
-        TabbedPanelItem:
-            text: 'Baxter Essentials'
-            BoxLayout:
-                orientation: 'horizontal'
-                Button:
-                    text: 'Disconnect'
-                    size_hint: .4,1
-                    on_release: root.disconnect()
-                Button:
-                    text: 'Slide 4'
-                    on_press: print "Slide 4 pressed"
-        TabbedPanelItem:
-            text: 'Custom Scripts'
-            BoxLayout:
-                orientation: 'horizontal'
+    GridLayout:
+        cols:1
+        BaxterBar:
+            size_hint: 1,.1
+        TabbedPanel:
+            orientation: 'vertical'
+            do_default_tab: False
+            tab_pos: 'top_mid'
+            tab_width: self.size[0]/len(self.tab_list)
+            TabbedPanelItem:
+                text: 'Baxter Essentials'
                 BoxLayout:
-                    size_hint: .4,1
-                    orientation: 'vertical'
+                    orientation: 'horizontal'
                     Button:
-                        text: 'List of Scripts'
-                        on_release: root.send2()
+                        text: 'Disconnect'
+                        size_hint: .4,1
+                        on_release: root.parent.disconnect()
                     Button:
-                        text: 'Open Cilinder'
+                        text: 'Slide 4'
+                        on_press: print "Slide 4 pressed"
+            TabbedPanelItem:
+                text: 'Custom Scripts'
                 BoxLayout:
-                    orientation: 'vertical'
-                    Label:
-                        text: 'Demo program, which shows how Baxter\ncan disassemble a cilinder and store the pieces'
-                        text_size: self.size
-                        halign: 'center'
-                        valign: 'middle'
-                        size_hint: 1,2
-                    Button:
-                        text: 'Run'
-                        on_release:
-                        halign: 'center'
-                        on_release: root.open_cilinder()
+                    orientation: 'horizontal'
+                    BoxLayout:
+                        size_hint: .4,1
+                        orientation: 'vertical'
+                        Button:
+                            text: 'List of Scripts'
+                            on_release: root.send2()
+                        Button:
+                            text: 'Open Cilinder'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        Label:
+                            text: 'Demo program, which shows how Baxter\ncan disassemble a cilinder and store the pieces'
+                            text_size: self.size
+                            halign: 'center'
+                            valign: 'middle'
+                            size_hint: 1,2
+                        Button:
+                            text: 'Run'
+                            on_release:
+                            halign: 'center'
+                            on_release: root.open_cilinder()
 
-        TabbedPanelItem:
-            text: 'About'
-            Button:
-                text: 'Slide three'
+            TabbedPanelItem:
+                text: 'About'
+                Button:
+                    text: 'Slide three'
 
-Baxter:
-    cols:1
-    BaxterBar:
-        size_hint: 1,.1
-    ScreenManager:
-        ConnectionScreen:
-        MainScreen:
+ScreenManagement:
+    transition: ft.WipeTransition()
+    ConnectionScreen:
+    MainScreen:
+
