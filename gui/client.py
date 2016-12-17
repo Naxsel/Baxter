@@ -64,6 +64,23 @@ class ScreenManagement(ScreenManager):
     pass
 
 class BaxterBar(ActionBar):
+        def connect(self):
+            global s
+            print ("Connecting to the Baxter...")
+            s.connect((ip, port))
+            print ("hola")
+            print s.recv(1024)
+            self.parent.current = "main"
+
+        def disconnect(self):
+            global s
+            s.send("0")
+            s.close()
+            print ("Closed Connection")
+            self.parent.current="Connection"
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # reset socket object
+
+class Baxter(GridLayout):
     pass
 
 presentation = Builder.load_file("main.kv")

@@ -12,7 +12,7 @@
             text: 'Group1'
             ActionButton:
                 text: 'Connect'
-                on_release: root.parent.parent.Box1.connect()
+                on_release: root.parent.ScreenManager.ConnectionScreen.connect()
             ActionButton:
                 text: 'Btn0'
                 icon:
@@ -94,12 +94,10 @@
             Button:
                 text: 'Slide three'
 
-BoxLayout:
-    orientation: 'vertical'
-    BoxLayout:
+Baxter:
+    cols:1
+    BaxterBar:
         size_hint: 1,.1
-        BaxterBar:
-    AnchorLayout:
-        ScreenManager:
-            ConnectionScreen:
-            MainScreen:
+    ScreenManager:
+        ConnectionScreen:
+        MainScreen:
