@@ -21,6 +21,9 @@ from kivy.uix.actionbar import ActionPrevious
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Create a socket object
 ip = 'localhost'  # Get local machine name
 port = 8080  # Reserve a port for your service.
+cnt = "true"
+dcnt = "false"
+
 
 class MainScreen(Screen):
     def on_index(self, instance, value):
@@ -50,6 +53,9 @@ class ConnectionScreen(Screen):
 class ScreenManagement(ScreenManager):
     def connect(self):
         global s
+        global cnt,dcnt
+        cnt = 'false'
+        dcnt = 'true'
         print ("Connecting to the Baxter...")
         s.connect((ip, port))
         print ("hola")
@@ -58,21 +64,28 @@ class ScreenManagement(ScreenManager):
 
     def disconnect(self):
         global s
+        global cnt,dcnt
+        cnt = 'true'
+        dcnt = 'false'
         s.send("0")
         s.close()
         print ("Closed Connection")
         self.current="Connection"
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # reset socket object
 
-class BaxterBar(ActionBar):
+class ConnectBar(ActionBar):
     pass
 
-class Baxter(GridLayout):
+class DisconnectBar(ActionBar):
     pass
 
 presentation = Builder.load_file("main.kv")
 
 class BaxterGUIApp(App):
+    def cnt(self):
+        return cnt
+    def dcnt(self):
+        return dcnt
     def build(self):
         return presentation
 

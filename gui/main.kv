@@ -1,7 +1,8 @@
 #:import ft kivy.uix.screenmanager
 
-<BaxterBar>:
+<ConnectBar>:
     pos_hint: {'top':1}
+    background_color: 9, 1, 1, 0.8
     ActionView:
         use_separator: True
         ActionPrevious:
@@ -14,35 +15,38 @@
                 text: 'Connect'
                 on_release: root.parent.parent.parent.connect()
             ActionButton:
-                text: 'Btn0'
-                icon:
+                icon: '../images/connect.png'
                 on_release: root.parent.parent.parent.connect()
-        ActionGroup:
-            disabled:'true'
-            text: 'Group2'
-            ActionButton:
-                text: 'Disconnect'
-                on_release: root.parent.parent.parent.disconnect()
-            ActionButton:
-                text: 'Btn0'
-                on_release: root.parent.parent.parent.disconnect()
-                icon:
         ActionGroup:
             text: 'Group3'
             ActionButton:
                 text: 'About'
             ActionButton:
-                text: 'Btn0'
-                icon:
+                icon: '../images/about.png'
 
-
-
+<DisconnectBar>:
+    pos_hint: {'top':1}
+    background_color: 9, 1, 1, 0.8
+    ActionView:
+        use_separator: True
+        ActionPrevious:
+            title: 'Baxter'
+            with_previous: False
+        ActionOverflow:
+        ActionGroup:
+            text: 'Group2'
+            ActionButton:
+                text: 'Disconnect'
+                on_release: root.parent.parent.parent.disconnect()
+            ActionButton:
+                on_release: app.disconnect()
+                icon: '../images/disconnect.png'
 
 <ConnectionScreen>:
     name: 'Connection'
     GridLayout:
         cols:1
-        BaxterBar:
+        ConnectBar:
             size_hint: 1,.1
         Button:
             on_release: root.parent.connect()
@@ -54,7 +58,7 @@
     id: 'mainscr'
     GridLayout:
         cols:1
-        BaxterBar:
+        DisconnectBar:
             size_hint: 1,.1
         TabbedPanel:
             orientation: 'vertical'
