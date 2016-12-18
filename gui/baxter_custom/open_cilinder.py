@@ -3,17 +3,35 @@
 """
 Move the arms to neutral position.
 """
-
+from multiprocessing import Pool
 import rospy
+from sensor_msgs.msg import Image
 import baxter_interface
+from baxter_interface.camera import CameraController
 from baxter_interface import(
     CHECK_VERSION
 )
 
-def run():
+def screen():
+    display_pub = rospy.Publisher('/robot/xdisplay', Image)
 
-    print("Initializing node... ")
-    rospy.init_node("Hello_Baxter")
+    def republish(msg):
+        """
+            Sends the camera image to baxter's display
+        """
+        display_pub.publish(msg)
+
+    # left_camera = CameraController("left_hand_camera")
+    # left_camera.close()
+    right_camera = CameraController("right_hand_camera")
+
+    right_camera.resolution = (960, 600)
+    right_camera.open()
+    camera_name = "right_hand_camera"
+    sub = rospy.Subscriber('/cameras/' + camera_name + "/image", Image, republish, None, 1)
+    rospy.spin()
+
+def open():
     print("Getting robot state... ")
     rs = baxter_interface.RobotEnable(CHECK_VERSION)
     print("Enabling robot... ")
@@ -53,23 +71,25 @@ def run():
     limb_right.move_to_neutral()
     limb_left.move_to_neutral()
 
-
     angles_right = limb_right.joint_angles()
 
     print("Grabbing Red Cylinder")
 
     wave_pre1_RGrab = {'right_s0': 0.220126243062, 'right_s1': -0.147645650834, 'right_e0': 0.132689338152,
-                    'right_e1': 0.867466135549, 'right_w0': 0.53305832379, 'right_w1': 1.57884972593, 'right_w2': 0.704864172033}
+                       'right_e1': 0.867466135549, 'right_w0': 0.53305832379, 'right_w1': 1.57884972593,
+                       'right_w2': 0.704864172033}
     limb_right.move_to_joint_positions(wave_pre1_RGrab)
 
     wave_pre2_RGrab = {'right_s0': 0.209388377546, 'right_s1': -0.00690291354548, 'right_e0': 0.256174791577,
-                    'right_e1': 0.866315649958, 'right_w0': 0.604388430427, 'right_w1': 1.58153419231, 'right_w2': 0.675335041867}
+                       'right_e1': 0.866315649958, 'right_w0': 0.604388430427, 'right_w1': 1.58153419231,
+                       'right_w2': 0.675335041867}
     limb_right.move_to_joint_positions(wave_pre2_RGrab)
 
     limb_right.set_joint_position_speed(0.1)
 
     wave_RGrab = {'right_s0': 0.131155357364, 'right_s1': 0.48627190976, 'right_e0': 0.614742800745,
-                    'right_e1': 0.50391268882, 'right_w0': 0.526538905442, 'right_w1': 1.71192255928, 'right_w2': 0.617810762321}
+                  'right_e1': 0.50391268882, 'right_w0': 0.526538905442, 'right_w1': 1.71192255928,
+                  'right_w2': 0.617810762321}
     limb_right.move_to_joint_positions(wave_RGrab)
 
     rospy.sleep(3)
@@ -79,24 +99,28 @@ def run():
     rospy.sleep(1)
 
     wave_post1_RGrab = {'right_s0': 0.136140794925, 'right_s1': 0.432966077381, 'right_e0': 0.619344743109,
-                    'right_e1': 0.536509780563, 'right_w0': 0.506213660002, 'right_w1': 1.75410703095, 'right_w2': 0.607072896806}
+                        'right_e1': 0.536509780563, 'right_w0': 0.506213660002, 'right_w1': 1.75410703095,
+                        'right_w2': 0.607072896806}
     limb_right.move_to_joint_positions(wave_post1_RGrab)
 
     rospy.sleep(1)
 
     wave_post2_RGrab = {'right_s0': 0.161834973122, 'right_s1': 0.499694241654, 'right_e0': 1.95620899975,
-                    'right_e1': 1.0515438301, 'right_w0': -0.769291365125, 'right_w1': 1.29583027057, 'right_w2': 1.48029146031}
+                        'right_e1': 1.0515438301, 'right_w0': -0.769291365125, 'right_w1': 1.29583027057,
+                        'right_w2': 1.48029146031}
     limb_right.move_to_joint_positions(wave_post2_RGrab)
 
     print("Left arm to position")
     limb_left.set_joint_position_speed(0.1)
 
     wave_pre1_LGrab = {'left_s0': -0.809941856003, 'left_s1': -0.772742821897, 'left_e0': -0.741679710943,
-                       'left_e1': 0.539194246942, 'left_w0': 0.513500068745, 'left_w1': 1.91939346084, 'left_w2': -0.589815612942}
+                       'left_e1': 0.539194246942, 'left_w0': 0.513500068745, 'left_w1': 1.91939346084,
+                       'left_w2': -0.589815612942}
     limb_left.move_to_joint_positions(wave_pre1_LGrab)
 
     wave_LGrab = {'left_s0': -0.671883585094, 'left_s1': -0.825665159079, 'left_e0': -0.748966119685,
-                       'left_e1': 1.07915548428, 'left_w0': 0.512349583154, 'left_w1': 1.43235456069, 'left_w2': -0.734776797397}
+                  'left_e1': 1.07915548428, 'left_w0': 0.512349583154, 'left_w1': 1.43235456069,
+                  'left_w2': -0.734776797397}
     limb_left.move_to_joint_positions(wave_LGrab)
 
     rospy.sleep(2.5)
@@ -106,19 +130,23 @@ def run():
     rospy.sleep(1)
 
     wave_post1_LGrab = {'left_s0': -0.571407843487, 'left_s1': -0.837937005382, 'left_e0': -0.795752533716,
-                       'left_e1': 1.0131943104, 'left_w0': 0.359718494759, 'left_w1': 1.48335942189, 'left_w2': -0.693742811321}
+                        'left_e1': 1.0131943104, 'left_w0': 0.359718494759, 'left_w1': 1.48335942189,
+                        'left_w2': -0.693742811321}
     limb_left.move_to_joint_positions(wave_post1_LGrab)
 
     wave_post1_RGrab = {'right_s0': 0.0352815581214, 'right_s1': 0.86861662114, 'right_e0': 1.90405365296,
-                    'right_e1': 0.610524353578, 'right_w0': -0.695660287306, 'right_w1': 1.33839823743, 'right_w2': 0.960655468413}
+                        'right_e1': 0.610524353578, 'right_w0': -0.695660287306, 'right_w1': 1.33839823743,
+                        'right_w2': 0.960655468413}
     limb_right.move_to_joint_positions(wave_post1_RGrab)
 
     wave_post2_RGrab = {'right_s0': 0.0632767075003, 'right_s1': 0.966407896368, 'right_e0': 1.90673811934,
-                    'right_e1': 0.475917539441, 'right_w0': -0.496626280078, 'right_w1': 1.34683513176, 'right_w2': 0.78884962017}
+                        'right_e1': 0.475917539441, 'right_w0': -0.496626280078, 'right_w1': 1.34683513176,
+                        'right_w2': 0.78884962017}
     limb_right.move_to_joint_positions(wave_post2_RGrab)
 
     wave_post2_LGrab = {'left_s0': -0.705631162427, 'left_s1': -0.376975778623, 'left_e0': -0.902364198474,
-                       'left_e1': 1.54395166301, 'left_w0': 1.10024772011, 'left_w1': 0.972160324322, 'left_w2': -1.28279143387}
+                        'left_e1': 1.54395166301, 'left_w0': 1.10024772011, 'left_w1': 0.972160324322,
+                        'left_w2': -1.28279143387}
     limb_left.move_to_joint_positions(wave_post2_LGrab)
 
     rospy.sleep(3)
@@ -126,15 +154,28 @@ def run():
     gripper_left.open();
 
     wave_endL = {'left_s0': 0.253873820395, 'left_s1': -0.170271867455, 'left_e0': -1.30043221293,
-                       'left_e1': 1.71690799684, 'left_w0': 1.4312040751, 'left_w1': 1.28777687143, 'left_w2': -0.822213702307}
+                 'left_e1': 1.71690799684, 'left_w0': 1.4312040751, 'left_w1': 1.28777687143,
+                 'left_w2': -0.822213702307}
     limb_left.move_to_joint_positions(wave_endL)
 
     wave_endR = {'right_s0': -0.27726702741, 'right_s1': 1.05729625805, 'right_e0': 2.13836921831,
-                    'right_e1': 0.711383590382, 'right_w0': -1.08759237861, 'right_w1': 1.52324292237, 'right_w2': 0.99401955055}
+                 'right_e1': 0.711383590382, 'right_w0': -1.08759237861, 'right_w1': 1.52324292237,
+                 'right_w2': 0.99401955055}
     limb_right.move_to_joint_positions(wave_endR)
 
     limb_left.move_to_neutral()
     limb_right.move_to_neutral()
+
+def run():
+
+    print("Initializing node... ")
+    rospy.init_node("Hello_Baxter")
+    pool = Pool(processes=2)
+    p1=pool.apply_async(screen(),)
+    p2=pool.apply_async(open(),)
+    while p2.is_alive():
+        print "hola"
+    p1.terminate()
 
 if __name__ == '__main__':
     run ()
