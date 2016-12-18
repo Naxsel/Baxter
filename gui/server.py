@@ -8,7 +8,8 @@ import time
 import baxter_essentials
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # Create a socket object
-ip = 'localhost'  # Get local machine name
+# ip = '192.168.1.54'  # Get local machine name
+ip = "localhost"
 # print ip
 port = 8080                 # Reserve a port for your service.
 serversocket.bind((ip, port))        # Bind to the port

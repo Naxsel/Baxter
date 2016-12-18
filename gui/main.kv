@@ -55,10 +55,18 @@
                 font_size: 50
                 pos: 0,200
             Image:
+                source: '../images/logo.png'
+                rgba: (1,1,1,2)
+                pos: 0,90
             Label:
                 text: 'Connect to the Baxter launching the server first'
                 font_size: 24
-                pos: 20,150
+                pos: 20,0
+            Label:
+                text: 'Run the server_run script or execute\n $ rosrun baxter_examples server.py\n\n Then click on the Connect Button'
+                font_size: 18
+                pos: 20,-70
+
 <MainScreen>:
     name: 'main'
     id: 'mainscr'
@@ -72,6 +80,7 @@
             tab_pos: 'top_mid'
             tab_width: self.size[0]/len(self.tab_list)
             TabbedPanelItem:
+                background_color: 1, 1, 1, 0.5
                 text: 'Baxter Essentials'
                 BoxLayout:
                     orientation: 'horizontal'
@@ -83,6 +92,7 @@
                         text: 'Slide 4'
                         on_press: print "Slide 4 pressed"
             TabbedPanelItem:
+                background_color: 1, 1, 1, 0.5
                 text: 'Custom Scripts'
                 BoxLayout:
                     orientation: 'horizontal'
@@ -107,11 +117,6 @@
                             on_release:
                             halign: 'center'
                             on_release: root.open_cilinder()
-
-            TabbedPanelItem:
-                text: 'About'
-                Button:
-                    text: 'Slide three'
 
 <AboutScreen>:
     name: 'About'
