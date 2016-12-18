@@ -21,8 +21,10 @@
             text: 'Group3'
             ActionButton:
                 text: 'About'
+                on_release: root.parent.parent.parent.about()
             ActionButton:
                 icon: '../images/about.png'
+                on_release: root.parent.parent.parent.about()
 
 <DisconnectBar>:
     pos_hint: {'top':1}
@@ -31,7 +33,8 @@
         use_separator: True
         ActionPrevious:
             title: 'Baxter'
-            with_previous: False
+            with_previous: True
+            on_release: root.parent.parent.parent.disconnect()
         ActionOverflow:
         ActionGroup:
             text: 'Group2'
@@ -39,8 +42,27 @@
                 text: 'Disconnect'
                 on_release: root.parent.parent.parent.disconnect()
             ActionButton:
-                on_release: app.disconnect()
                 icon: '../images/disconnect.png'
+                on_release: root.parent.parent.parent.disconnect()
+
+<AboutBar>:
+    pos_hint: {'top':1}
+    background_color: 9, 1, 1, 0.8
+    ActionView:
+        use_separator: True
+        ActionPrevious:
+            title: 'Baxter'
+            with_previous: True
+            on_release: root.parent.parent.parent.back()
+        ActionOverflow:
+        ActionGroup:
+            text: 'Group1'
+            ActionButton:
+                text: 'Connect'
+                on_release: root.parent.parent.parent.connect()
+            ActionButton:
+                icon: '../images/connect.png'
+                on_release: root.parent.parent.parent.connect()
 
 <ConnectionScreen>:
     name: 'Connection'
@@ -57,15 +79,28 @@
             Image:
                 source: '../images/logo.png'
                 rgba: (1,1,1,2)
-                pos: 0,90
+                pos: -60,90
+            Image:
+                source: '../images/baxter.png'
+                rgba: (1,1,1,2)
+                pos: 90,90
             Label:
                 text: 'Connect to the Baxter launching the server first'
                 font_size: 24
                 pos: 20,0
             Label:
-                text: 'Run the server_run script or execute\n $ rosrun baxter_examples server.py\n\n Then click on the Connect Button'
+                text: 'On a Baxter terminal instance run the server_run script or execute'
                 font_size: 18
-                pos: 20,-70
+                pos: 20,-60
+            Label:
+                text:'$ rosrun baxter_examples server.py\n\n Then click on the Connect Button'
+                font_size: 18
+                pos: 20,-105
+            Label:
+                text: 'This application belongs to a research project concerning the use of the Baxter in the Factory of the Future'
+                font_size: 16
+                pos: 0,-220
+
 
 <MainScreen>:
     name: 'main'
@@ -83,6 +118,7 @@
                 background_color: 1, 1, 1, 0.5
                 text: 'Baxter Essentials'
                 BoxLayout:
+                    background_color: 1, 1, 1, 0.5
                     orientation: 'horizontal'
                     Button:
                         text: 'Disconnect'
@@ -122,9 +158,25 @@
     name: 'About'
     GridLayout:
         cols:1
-        ConnectBar:
+        AboutBar:
             size_hint: 1,.1
         FloatLayout:
+            Image:
+                source: '../images/profile.jpg'
+                pos: 280,140
+            Label:
+                text: 'Me, Myself, I'
+                font_size: 40
+                pos: -100,200
+            Label:
+                text: 'My name is Alejandro Solanas,\nI\'am a computer engineer student from Spain,\ndoing a Master Project for Luleå University of Technology, Sweden.'
+                font_size: 18
+                pos: -120,120
+            Label:
+                text: 'This project was created under de supervision and advise of Arash Mousavi,\nAssociate Senior Lecturer at Luleå University of Technology.'
+                font_size: 18
+                pos: -80,20
+
 
 ScreenManagement:
     transition: ft.WipeTransition()

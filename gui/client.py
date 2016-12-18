@@ -76,10 +76,20 @@ class ScreenManagement(ScreenManager):
         self.current="Connection"
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # reset socket object
 
+    def about(self):
+        self.current="About"
+
+    def back(self):
+        self.current="Connection"
+
+
 class ConnectBar(ActionBar):
     pass
 
 class DisconnectBar(ActionBar):
+    pass
+
+class AboutBar(ActionBar):
     pass
 
 presentation = Builder.load_file("main.kv")
