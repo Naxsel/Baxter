@@ -48,11 +48,17 @@
         cols:1
         ConnectBar:
             size_hint: 1,.1
-        Button:
-            on_release: root.parent.connect()
-            text: 'Connect to the baxter'
-            font_size: 50
-
+        FloatLayout:
+            background_color: 1, 1, 1, 0.5
+            Label:
+                text: 'Baxter Robot User Interface'
+                font_size: 50
+                pos: 0,200
+            Image:
+            Label:
+                text: 'Connect to the Baxter launching the server first'
+                font_size: 24
+                pos: 20,150
 <MainScreen>:
     name: 'main'
     id: 'mainscr'
@@ -107,8 +113,18 @@
                 Button:
                     text: 'Slide three'
 
+<AboutScreen>:
+    name: 'About'
+    GridLayout:
+        cols:1
+        ConnectBar:
+            size_hint: 1,.1
+        FloatLayout:
+
 ScreenManagement:
     transition: ft.WipeTransition()
     ConnectionScreen:
     MainScreen:
+    AboutScreen:
+
 

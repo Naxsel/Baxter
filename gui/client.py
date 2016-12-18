@@ -49,6 +49,8 @@ class MainScreen(Screen):
 class ConnectionScreen(Screen):
     pass
 
+class AboutScreen(Screen):
+    pass
 
 class ScreenManagement(ScreenManager):
     def connect(self):

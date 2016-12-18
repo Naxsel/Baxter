@@ -6,6 +6,7 @@ rm -r ~/ros_ws/src/baxter_examples/scripts/gui
 mkdir -p ~/ros_ws/src/baxter_examples/scripts/Alex
 mkdir -p ~/ros_ws/src/baxter_examples/scripts/gui
 
+#  Change ~/shared for the root folder of the project
 chmod +x ~/shared/core/*
 chmod +x ~/shared/gui/*
 chmod +x ~/shared/gui/baxter_custom/*
