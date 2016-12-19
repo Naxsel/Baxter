@@ -170,12 +170,8 @@ def run():
 
     print("Initializing node... ")
     rospy.init_node("Hello_Baxter")
-    pool = Pool(processes=2)
-    p1=pool.apply_async(screen(),)
-    p2=pool.apply_async(open(),)
-    while p2.is_alive():
-        print "hola"
-    p1.terminate()
+    open()
+
 
 if __name__ == '__main__':
     run ()
