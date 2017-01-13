@@ -11,6 +11,15 @@ class AnotherScreen(Screen):
 class ScreenManagement(ScreenManager):
     pass
 
+class SubScreen(ScreenManager):
+    pass
+
+class SubScreen1(Screen):
+    pass
+
+class SubScreen2(Screen):
+    pass
+
 presentation = Builder.load_file("main.kv")
 
 class MainApp(App):

@@ -5,13 +5,34 @@ ScreenManagement:
     MainScreen:
     AnotherScreen:
 
+<SubScreen>:
+    transition: ft.NoTransition()
+    SubScreen1:
+    SubScreen2:
+
+<SubScreen1>:
+    name: 'SubScreen1'
+    Button:
+        on_release: self.parent.parent.current = 'SubScreen2'
+        text: 'SubScreen1'
+        font_size: 50
+
+<SubScreen2>:
+    name: 'SubScreen2'
+    Button:
+        on_release: self.parent.parent.current = 'SubScreen1'
+        text: 'SubScreen2'
+        font_size: 50
+
 <MainScreen>:
     name: 'main'
-
-    Button:
-        on_release: app.root.current = 'other'
-        text: 'Another Screen'
-        font_size: 50
+    GridLayout:
+        cols:1
+        Button:
+            on_release: app.root.current = 'other'
+            text: 'Another Screen'
+            font_size: 50
+        SubScreen:
 
 <AnotherScreen>:
     name: 'other'
