@@ -1,0 +1,86 @@
+#: import ListItemLabel kivy.uix.listview.ListItemLabel
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import CompositeListItem kivy.uix.listview.CompositeListItem
+#: import AsyncImage kivy.uix.image.AsyncImage
+#: import SelectableView kivy.uix.listview.SelectableView
+#: import BoxLayout kivy.uix.boxlayout.BoxLayout
+#: import main listview1
+
+ScreenManagement:
+
+<ScreenManagement>:
+    SearchForm
+    ResultPage
+
+
+
+<SearchForm>:
+    name: "search_screen"
+    search_box:search_box
+    search_button:search_button
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "FLEA MARKET FLIP"
+            font_size: 45
+            pos_hint: {"center_x":0.5, "center_y":1}
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: '100dp'
+            TextInput:
+                id: search_box
+                text: ""
+                size_hint_x: 0.5
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+            Button:
+                text: "Price It!"
+                id:search_button
+                on_release:
+                    root.manager.get_screen("result_page").results_list.adapter.data.clear()
+                    root.manager.get_screen("result_page").results_list.adapter.data.extend([s for s in app.root.ebay(search_box.text)])
+                    root.manager.get_screen("result_page").do_layout()
+                    root.manager.get_screen("result_page").results_list._trigger_reset_populate()
+                    app.root.current = "result_page"
+
+
+
+
+<ResultPage>:
+    name: "result_page"
+    orientation: 'vertical'
+    results_list:results_list
+    ListView:
+        padding:(100,110)
+        id: results_list
+        adapter: ListAdapter(data=[], cls=main.Ebay_Item, args_converter=root.args_converter, allow_empty_selection=False)
+    FloatLayout:
+        Button:
+            size_hint: [0.2,0.1]
+            spacing: 50
+            pos_hint: {"x":0, "y":0}
+            text: "Back"
+            on_release:
+                app.root.current = "search_screen"
+
+
+
+<Ebay_Item>:
+    orientation: "vertical"
+    cols: 3
+    #spacing: 60
+    row_force_default: True
+    row_default_height: 40
+    Label:
+        text: root.results[0]
+        size: self.texture_size
+        text_size: self.width, self.height
+    Label:
+        text: root.results[1]
+        size: self.texture_size
+    AsyncImage:
+        allow_stretch: True
+        size_hint_y: None
+        size_hint_x: None
+        source: root.results[2]
+        size: self.texture_size
