@@ -92,6 +92,28 @@ class DisconnectBar(ActionBar):
 class AboutBar(ActionBar):
     pass
 
+class SubScreen(ScreenManager):
+    pass
+
+class IntroScreen(Screen):
+    pass
+
+class OpenCylinderScreen(Screen):
+    pass
+
+class MoveNeutralScreen(Screen):
+    pass
+
+class HelloScreen(Screen):
+    pass
+
+class EssentialList(BoxLayout):
+    pass
+
+class CustomList(BoxLayout):
+    pass
+
+
 presentation = Builder.load_file("main.kv")
 
 class BaxterGUIApp(App):

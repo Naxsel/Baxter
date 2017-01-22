@@ -64,6 +64,7 @@
                 icon: '../images/connect.png'
                 on_release: root.parent.parent.parent.connect()
 
+
 <ConnectionScreen>:
     name: 'Connection'
     GridLayout:
@@ -101,6 +102,35 @@
                 font_size: 16
                 pos: 0,-220
 
+<EssentialList>:
+    size_hint: .4,1
+    orientation: 'vertical'
+    Button:
+        text: 'Essential 1'
+        on_release: root.send2()
+    Button:
+        text: 'Essential 2'
+    Button:
+        text: 'Essential 3'
+
+<CustomList>:
+    size_hint: .4,1
+    orientation: 'vertical'
+    Button:
+        text: 'Hello Baxter'
+        on_release: root.send2()
+    Button:
+        text: 'Move to Neutral'
+    Button:
+        text: 'Open Cylinder'
+
+<IntroScreen>:
+
+<OpenCylinderScreen>:
+
+<MoveNeutralScreen>:
+
+<HelloScreen>:
 
 <MainScreen>:
     name: 'main'
@@ -115,10 +145,9 @@
             tab_pos: 'top_mid'
             tab_width: self.size[0]/len(self.tab_list)
             TabbedPanelItem:
-                background_color: 1, 1, 1, 0.5
+                background_color: 15, 1, 0.5, 0.8
                 text: 'Baxter Essentials'
                 BoxLayout:
-                    background_color: 1, 1, 1, 0.5
                     orientation: 'horizontal'
                     Button:
                         text: 'Disconnect'
@@ -128,7 +157,7 @@
                         text: 'Slide 4'
                         on_press: print "Slide 4 pressed"
             TabbedPanelItem:
-                background_color: 1, 1, 1, 0.5
+                background_color: 9, 1, 0.5, 0.8
                 text: 'Custom Scripts'
                 BoxLayout:
                     orientation: 'horizontal'
@@ -136,10 +165,12 @@
                         size_hint: .4,1
                         orientation: 'vertical'
                         Button:
-                            text: 'List of Scripts'
+                            text: 'Hello Baxter'
                             on_release: root.send2()
                         Button:
-                            text: 'Open Cilinder'
+                            text: 'Move to Neutral'
+                        Button:
+                            text: 'Open Cylinder'
                     BoxLayout:
                         orientation: 'vertical'
                         Label:
@@ -149,6 +180,7 @@
                             valign: 'middle'
                             size_hint: 1,2
                         Button:
+                            background_color: 3, 0.5, 0.5, 0.8
                             text: 'Run'
                             on_release:
                             halign: 'center'
@@ -185,3 +217,9 @@ ScreenManagement:
     AboutScreen:
 
 
+<SubScreen>
+    transition: ft.NoTransition()
+    IntroScreen:
+    OpenCylinderScreen:
+    MoveNeutralScreen:
+    HelloScreen:
