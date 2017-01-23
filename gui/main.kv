@@ -118,20 +118,88 @@
     orientation: 'vertical'
     Button:
         text: 'Hello Baxter'
-        on_release: root.send2()
+        on_release: self.parent.parent.parent.parent.current = 'hello'
     Button:
         text: 'Move to Neutral'
+        on_release: self.parent.parent.parent.parent.current = 'neutral'
     Button:
         text: 'Open Cylinder'
+        on_release: self.parent.parent.parent.parent.current = 'cylinder'
+
 
 <IntroScreen>:
+    name: 'intro'
+    BoxLayout:
+        orientation: 'horizontal'
+        CustomList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Demo program, which shows how Baxter\ncan disassemble a cilinder and store the pieces'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
 
 <OpenCylinderScreen>:
+    name: 'cylinder'
+    BoxLayout:
+        orientation: 'horizontal'
+        CustomList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Demo program2, which shows how Baxter\ncan disassemble a cilinder and store the pieces'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+            Button:
+                background_color: 3, 0.5, 0.5, 0.8
+                text: 'Run'
+                on_release:
+                halign: 'center'
+                on_release: root.open_cilinder()
 
 <MoveNeutralScreen>:
+    name: 'neutral'
+    BoxLayout:
+        orientation: 'horizontal'
+        CustomList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Demo program3, which shows how Baxter\ncan disassemble a cilinder and store the pieces'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+            Button:
+                background_color: 3, 0.5, 0.5, 0.8
+                text: 'Run'
+                on_release:
+                halign: 'center'
+                on_release: root.open_cilinder()
 
 <HelloScreen>:
-
+    name: 'hello'
+    BoxLayout:
+        orientation: 'horizontal'
+        CustomList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Demo program4, which shows how Baxter\ncan disassemble a cilinder and store the pieces'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+            Button:
+                background_color: 3, 0.5, 0.5, 0.8
+                text: 'Run'
+                on_release:
+                halign: 'center'
+                on_release: root.open_cilinder()
 <MainScreen>:
     name: 'main'
     id: 'mainscr'
@@ -159,32 +227,8 @@
             TabbedPanelItem:
                 background_color: 9, 1, 0.5, 0.8
                 text: 'Custom Scripts'
-                BoxLayout:
-                    orientation: 'horizontal'
-                    BoxLayout:
-                        size_hint: .4,1
-                        orientation: 'vertical'
-                        Button:
-                            text: 'Hello Baxter'
-                            on_release: root.send2()
-                        Button:
-                            text: 'Move to Neutral'
-                        Button:
-                            text: 'Open Cylinder'
-                    BoxLayout:
-                        orientation: 'vertical'
-                        Label:
-                            text: 'Demo program, which shows how Baxter\ncan disassemble a cilinder and store the pieces'
-                            text_size: self.size
-                            halign: 'center'
-                            valign: 'middle'
-                            size_hint: 1,2
-                        Button:
-                            background_color: 3, 0.5, 0.5, 0.8
-                            text: 'Run'
-                            on_release:
-                            halign: 'center'
-                            on_release: root.open_cilinder()
+                SubScreen:
+                    IntroScreen:
 
 <AboutScreen>:
     name: 'About'
