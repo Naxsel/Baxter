@@ -92,10 +92,16 @@ class DisconnectBar(ActionBar):
 class AboutBar(ActionBar):
     pass
 
-class SubScreen(ScreenManager):
+class Manager1(ScreenManager):
     pass
 
-class IntroScreen(Screen):
+class Manager2(ScreenManager):
+    pass
+
+class CustomScreen(Screen):
+    pass
+
+class EssentialScreen(Screen):
     pass
 
 class OpenCylinderScreen(Screen):

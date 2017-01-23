@@ -127,11 +127,25 @@
         on_release: self.parent.parent.parent.parent.current = 'cylinder'
 
 
-<IntroScreen>:
+<CustomScreen>:
     name: 'intro'
     BoxLayout:
         orientation: 'horizontal'
         CustomList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Demo program, which shows how Baxter\ncan disassemble a cilinder and store the pieces'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+
+<EssentialScreen>:
+    name: 'intro'
+    BoxLayout:
+        orientation: 'horizontal'
+        EssentialList:
         BoxLayout:
             orientation: 'vertical'
             Label:
@@ -200,6 +214,7 @@
                 on_release:
                 halign: 'center'
                 on_release: root.open_cilinder()
+
 <MainScreen>:
     name: 'main'
     id: 'mainscr'
@@ -215,20 +230,13 @@
             TabbedPanelItem:
                 background_color: 15, 1, 0.5, 0.8
                 text: 'Baxter Essentials'
-                BoxLayout:
-                    orientation: 'horizontal'
-                    Button:
-                        text: 'Disconnect'
-                        size_hint: .4,1
-                        on_release: root.parent.disconnect()
-                    Button:
-                        text: 'Slide 4'
-                        on_press: print "Slide 4 pressed"
+                Manager2:
+                    EssentialScreen:
             TabbedPanelItem:
                 background_color: 9, 1, 0.5, 0.8
                 text: 'Custom Scripts'
-                SubScreen:
-                    IntroScreen:
+                Manager1:
+                    CustomScreen:
 
 <AboutScreen>:
     name: 'About'
@@ -261,9 +269,13 @@ ScreenManagement:
     AboutScreen:
 
 
-<SubScreen>
+<Manager1>
     transition: ft.NoTransition()
-    IntroScreen:
+    CustomScreen:
     OpenCylinderScreen:
     MoveNeutralScreen:
     HelloScreen:
+
+<Manager2>
+    transition: ft.NoTransition()
+    EssentialScreen:
