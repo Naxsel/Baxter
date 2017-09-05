@@ -10,9 +10,8 @@ import time
 import baxter_custom
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # Create a socket object
-# ip = '10.108.10.29'  # Get local machine name
+# ip = "192.168.1.4"  # Get local machine name
 ip = "localhost"
-# print ip
 port = 8080                 # Reserve a port for your service.
 serversocket.bind((ip, port))        # Bind to the port
 
@@ -25,32 +24,33 @@ while True:
     code = "es1"
     while code != "0":
         code = c.recv(1024)
-        print ('Got code %s' % code)
+        print ('Got code %s' %code)
 
         if code == "es1":
-            print code
             c.send("ok")
             # rs = baxter_interface.RobotEnable(CHECK_VERSION)
             # rs.enable()
         elif code == "es2":
-            print code
+            c.send("ok")
             # thread.start_new_thread(baxter_custom.move_to_neutral.run(), [])
         elif code == "es3":
-            print code
-
+            c.send("ok")
+            # thread.start_new_thread(baxter_custom.joint_wobbler.main(), [])
         elif code == "es4":
-            print code
+            c.send("ok")
         elif code == "es5":
-            print code
+            c.send("ok")
             # rs = baxter_interface.RobotEnable(CHECK_VERSION)
             # rs.disable()
         elif code == "cs1":
-            print code
+            c.send("ok")
+            # thread.start_new_thread(baxter_custom.hello.run(), [])
         elif code == "cs2":
-            print code
+            c.send("ok")
             # thread.start_new_thread(baxter_custom.open_cylinder.run(), [])
         elif code == "cs3":
-            print code
+            c.send("ok")
+            # thread.start_new_thread(baxter_custom.camera_stream.run(), [])
     print("Disconnected")
     c.send('Thank you for connecting')
     c.close()                # Close the connection

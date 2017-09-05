@@ -24,7 +24,7 @@ from kivy.uix.actionbar import ActionPrevious
 # Global vars
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Create a socket object
 ip = 'localhost'  # Get local machine name
-# ip = "10.108.10.29"
+# ip = "192.168.1.4"
 port = 8080  # Reserve a port for your service.
 cnt = "true"
 dcnt = "false"
@@ -32,7 +32,6 @@ dcnt = "false"
 
 # Class definition
 class MainScreen(Screen):
-    global s
 
     def on_index(self, instance, value):
         tab = instance.current_slide.tab
@@ -43,29 +42,6 @@ class MainScreen(Screen):
         self.current_tab.state = "normal"
         header.state = 'down'
         self._current_tab = header
-
-    def enable_robot(self):
-        global s
-
-    def disable_robot(self):
-        global s
-
-    def move_to_neutral(self):
-        global s
-
-    def hello_baxter(self):
-        global s
-
-    def open_cylinder(self):
-        global s
-        s.send("1")
-        s.recv(1024)
-
-    def camera_stream(self):
-        global s
-
-    def send2(self):
-        s.send("2")
 
 class ConnectionScreen(Screen):
     pass
@@ -131,41 +107,56 @@ class EssentialList(BoxLayout):
 class EssentialScreen1(Screen):
     def run(self):
         global s
+        s.send("es1")
+        s.recv(1024)
 
 class EssentialScreen2(Screen):
     def run(self):
         global s
+        s.send("es2")
+        s.recv(1024)
 
 class EssentialScreen3(Screen):
     def run(self):
         global s
-        s.send("2")
+        s.send("es3")
+        s.recv(1024)
 
 class EssentialScreen4(Screen):
-    pass
+    def run(self):
+        global s
+        s.send("es4")
+        s.recv(1024)
 
 class EssentialScreen5(Screen):
-    pass
+    def run(self):
+        global s
+        s.send("es5")
+        s.recv(1024)
 
 class CustomScreen(Screen):
     pass
 
 class CustomList(BoxLayout):
     pass
-
 class HelloScreen(Screen):
     def run(self):
         global s
+        s.send("cs1")
+        s.recv(1024)
+
 
 class OpenCylinderScreen(Screen):
     def run(self):
         global s
-        s.send("1")
+        s.send("cs2")
         s.recv(1024)
 
 class CameraStreamScreen(Screen):
     def run(self):
         global s
+        s.send("cs3")
+        s.recv(1024)
 
 
 # Main kivy file, all the interface design is done through it

@@ -94,7 +94,7 @@
                 font_size: 18
                 pos: 20,-60
             Label:
-                text:'$ rosrun baxter_examples server.py\n\n Then click on the Connect Button'
+                text:'$ rosrun baxter_examples server.py\n\n Then click on the Connect Button\n\nEnsure that the IPs are correctly set on the server and client files'
                 font_size: 18
                 pos: 20,-105
             Label:
@@ -213,7 +213,7 @@
                 text: 'Run'
                 on_release:
                 halign: 'center'
-                on_release: root.open_cylinder()
+                on_release: root.run()
 
 <EssentialScreen2>:
     name: 'es2'
@@ -233,7 +233,7 @@
                 text: 'Run'
                 on_release:
                 halign: 'center'
-                on_release: root.open_cylinder()
+                on_release: root.run()
 
 <EssentialScreen3>:
     name: 'es3'
@@ -243,7 +243,7 @@
         BoxLayout:
             orientation: 'vertical'
             Label:
-                text: 'Joint Velocity Wobbler\n\n\nPlease don\'t press any button until the action is done'
+                text: 'Joint Velocity Wobbler\n\nArm Joints Test\n\n\nPlease don\'t press any button until the action is done'
                 text_size: self.size
                 halign: 'center'
                 valign: 'middle'
@@ -253,7 +253,7 @@
                 text: 'Run'
                 on_release:
                 halign: 'center'
-                on_release: root.send2()
+                on_release: root.run()
 
 <EssentialScreen4>:
     name: 'es4'
@@ -263,7 +263,7 @@
         BoxLayout:
             orientation: 'vertical'
             Label:
-                text: 'Head Wobbler\n\n\nPlease don\'t press any button until the action is done'
+                text: 'Head Wobbler\n\nHead Movement Test\n\n\nPlease don\'t press any button until the action is done'
                 text_size: self.size
                 halign: 'center'
                 valign: 'middle'
@@ -273,7 +273,7 @@
                 text: 'Run'
                 on_release:
                 halign: 'center'
-                on_release: root.send2()
+                on_release: root.run()
 
 <EssentialScreen5>:
     name: 'es5'
@@ -293,7 +293,7 @@
                 text: 'Run'
                 on_release:
                 halign: 'center'
-                on_release: root.send2()
+                on_release: root.run()
 
 <CustomScreen>:
     name: 'cs'
@@ -327,7 +327,7 @@
                 text: 'Run'
                 on_release:
                 halign: 'center'
-                on_release: root.open_cylinder()
+                on_release: root.run()
 
 <OpenCylinderScreen>:
     name: 'cylinder'
@@ -347,7 +347,7 @@
                 text: 'Run'
                 on_release:
                 halign: 'center'
-                on_release: root.open_cylinder()
+                on_release: root.run()
 
 <CameraStreamScreen>:
     name: 'camera'
@@ -367,7 +367,7 @@
                 text: 'Run'
                 on_release:
                 halign: 'center'
-                on_release: root.open_cylinder()
+                on_release: root.run()
 
 
 ScreenManagement:
