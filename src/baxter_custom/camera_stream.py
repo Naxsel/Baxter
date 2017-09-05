@@ -10,20 +10,22 @@ from baxter_core_msgs.srv import (
 )
 from baxter_interface.camera import CameraController
 
+"""
+    Sends the camera image to baxter's display
+"""
 
 rospy.init_node("my_cam")
 display_pub= rospy.Publisher('/robot/xdisplay',Image)
 def republish(msg):
-        """
-            Sends the camera image to baxter's display
-        """
         display_pub.publish(msg)
-# left_camera = CameraController("left_hand_camera")
-# left_camera.close()
-right_camera = CameraController("right_hand_camera")
 
-right_camera.resolution =(960, 600)
-right_camera.open()
+# Change for left camera if desired
+# camera = CameraController("left_hand_camera")
+camera = CameraController("right_hand_camera")
+
+camera.resolution =(960, 600)
+camera.open()
+# camera_name = "left_hand_camera")
 camera_name = "right_hand_camera"
 sub = rospy.Subscriber('/cameras/' + camera_name + "/image", Image,republish,None,1)
 rospy.spin()

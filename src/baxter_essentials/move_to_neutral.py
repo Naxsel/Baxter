@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 
 """
-Move the arms to neutral position.
+Baxter script which sets the robot in neutral position.
 """
 
 import rospy
 import baxter_interface
 from baxter_interface import CHECK_VERSION
 
-def neutral():
+
+# Main Thread
+def run():
     rospy.init_node("Hello_Baxter")
     limb_right = baxter_interface.Limb("right")
     limb_left = baxter_interface.Limb("left")
@@ -37,6 +39,7 @@ def neutral():
     gripper_right.open()
     rospy.sleep(1)
 
+    # Position reset
     limb_left.set_joint_position_speed(0.4)
     limb_right.set_joint_position_speed(0.4)
 
@@ -46,4 +49,4 @@ def neutral():
     head.set_pan(0.0)
 
 if __name__ == '__main__':
-    neutral()
+    run()

@@ -1,0 +1,395 @@
+#:import ft kivy.uix.screenmanager
+
+<ConnectBar>:
+    pos_hint: {'top':1}
+    background_color: 9, 1, 1, 0.8
+    ActionView:
+        use_separator: True
+        ActionPrevious:
+            title: 'Baxter'
+            with_previous: False
+        ActionOverflow:
+        ActionGroup:
+            text: 'Group1'
+            ActionButton:
+                text: 'Connect'
+                on_release: root.parent.parent.parent.connect()
+            ActionButton:
+                icon: '../images/connect.png'
+                on_release: root.parent.parent.parent.connect()
+        ActionGroup:
+            text: 'Group3'
+            ActionButton:
+                text: 'About'
+                on_release: root.parent.parent.parent.about()
+            ActionButton:
+                icon: '../images/about.png'
+                on_release: root.parent.parent.parent.about()
+
+<DisconnectBar>:
+    pos_hint: {'top':1}
+    background_color: 9, 1, 1, 0.8
+    ActionView:
+        use_separator: True
+        ActionPrevious:
+            title: 'Baxter'
+            with_previous: True
+            on_release: root.parent.parent.parent.disconnect()
+        ActionOverflow:
+        ActionGroup:
+            text: 'Group2'
+            ActionButton:
+                text: 'Disconnect'
+                on_release: root.parent.parent.parent.disconnect()
+            ActionButton:
+                icon: '../images/disconnect.png'
+                on_release: root.parent.parent.parent.disconnect()
+
+<AboutBar>:
+    pos_hint: {'top':1}
+    background_color: 9, 1, 1, 0.8
+    ActionView:
+        use_separator: True
+        ActionPrevious:
+            title: 'Baxter'
+            with_previous: True
+            on_release: root.parent.parent.parent.back()
+        ActionOverflow:
+        ActionGroup:
+            text: 'Group1'
+            ActionButton:
+                text: 'Connect'
+                on_release: root.parent.parent.parent.connect()
+            ActionButton:
+                icon: '../images/connect.png'
+                on_release: root.parent.parent.parent.connect()
+
+
+<ConnectionScreen>:
+    name: 'Connection'
+    GridLayout:
+        cols:1
+        ConnectBar:
+            size_hint: 1,.1
+        FloatLayout:
+            background_color: 1, 1, 1, 0.5
+            Label:
+                text: 'Baxter Robot User Interface'
+                font_size: 50
+                pos: 0,200
+            Image:
+                source: '../images/logo.png'
+                rgba: (1,1,1,2)
+                pos: -60,90
+            Image:
+                source: '../images/baxter.png'
+                rgba: (1,1,1,2)
+                pos: 90,90
+            Label:
+                text: 'Connect to the Baxter launching the server first'
+                font_size: 24
+                pos: 20,0
+            Label:
+                text: 'On a Baxter terminal instance execute:'
+                font_size: 18
+                pos: 20,-60
+            Label:
+                text:'$ rosrun baxter_examples server.py\n\n Then click on the Connect Button'
+                font_size: 18
+                pos: 20,-105
+            Label:
+                text: 'This application belongs to a research project concerning the use of the Baxter in the Factory of the Future'
+                font_size: 16
+                pos: 0,-220
+
+<MainScreen>:
+    name: 'main'
+    id: 'mainscr'
+    GridLayout:
+        cols:1
+        DisconnectBar:
+            size_hint: 1,.1
+        TabbedPanel:
+            orientation: 'vertical'
+            do_default_tab: False
+            tab_pos: 'top_mid'
+            tab_width: self.size[0]/len(self.tab_list)
+            TabbedPanelItem:
+                background_color: 15, 1, 0.5, 0.8
+                text: 'Baxter Essentials'
+                Manager2:
+                    EssentialScreen:
+            TabbedPanelItem:
+                background_color: 9, 1, 0.5, 0.8
+                text: 'Custom Scripts'
+                Manager1:
+                    CustomScreen:
+
+<AboutScreen>:
+    name: 'About'
+    GridLayout:
+        cols:1
+        AboutBar:
+            size_hint: 1,.1
+        FloatLayout:
+            Image:
+                source: '../images/profile.jpg'
+                pos: 280,140
+            Label:
+                text: 'Me, Myself, I'
+                font_size: 40
+                pos: -100,200
+            Label:
+                text: 'My name is Alejandro Solanas,\nI\'am a computer engineer student from Spain,\ndoing a Master Project for Lulea University of Technology, Sweden.'
+                font_size: 18
+                pos: -120,120
+            Label:
+                text: 'This project was created under de supervision and advise of Arash Mousavi,\nAssociate Senior Lecturer at Lulea University of Technology.'
+                font_size: 18
+                pos: -80,20
+
+<EssentialList>:
+    size_hint: .4,1
+    orientation: 'vertical'
+    Button:
+        text: 'Enable Robot'
+        on_release: self.parent.parent.parent.parent.current = 'es1'
+    Button:
+        text: 'Move to Neutral'
+        on_release: self.parent.parent.parent.parent.current = 'es2'
+    Button:
+        text: 'Joint Velocity Wobbler'
+        on_release: self.parent.parent.parent.parent.current = 'es3'
+    Button:
+        text: 'Head Wobbler'
+        on_release: self.parent.parent.parent.parent.current = 'es4'
+    Button:
+        text: 'Disable Robot'
+        on_release: self.parent.parent.parent.parent.current = 'es5'
+
+<CustomList>:
+    size_hint: .4,1
+    orientation: 'vertical'
+    Button:
+        text: 'Hello Baxter'
+        on_release: self.parent.parent.parent.parent.current = 'hello'
+    Button:
+        text: 'Open Cylinder'
+        on_release: self.parent.parent.parent.parent.current = 'cylinder'
+    Button:
+        text: 'Camera Stream'
+        on_release: self.parent.parent.parent.parent.current = 'camera'
+
+
+<EssentialScreen>:
+    name: 'es'
+    BoxLayout:
+        orientation: 'horizontal'
+        EssentialList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Click on the element of the list you want to run for more details'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+
+<EssentialScreen1>:
+    name: 'es1'
+    BoxLayout:
+        orientation: 'horizontal'
+        EssentialList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Enable Robot\n\n\nPlease don\'t press any button until the action is done'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+            Button:
+                background_color: 3, 0.5, 0.5, 0.8
+                text: 'Run'
+                on_release:
+                halign: 'center'
+                on_release: root.open_cylinder()
+
+<EssentialScreen2>:
+    name: 'es2'
+    BoxLayout:
+        orientation: 'horizontal'
+        EssentialList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Move to Neutral\n\nSets Baxter on a default position, including arms head and gripers\n\n\nPlease don\'t press any button until the action is done'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+            Button:
+                background_color: 3, 0.5, 0.5, 0.8
+                text: 'Run'
+                on_release:
+                halign: 'center'
+                on_release: root.open_cylinder()
+
+<EssentialScreen3>:
+    name: 'es3'
+    BoxLayout:
+        orientation: 'horizontal'
+        EssentialList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Joint Velocity Wobbler\n\n\nPlease don\'t press any button until the action is done'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+            Button:
+                background_color: 3, 0.5, 0.5, 0.8
+                text: 'Run'
+                on_release:
+                halign: 'center'
+                on_release: root.send2()
+
+<EssentialScreen4>:
+    name: 'es4'
+    BoxLayout:
+        orientation: 'horizontal'
+        EssentialList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Head Wobbler\n\n\nPlease don\'t press any button until the action is done'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+            Button:
+                background_color: 3, 0.5, 0.5, 0.8
+                text: 'Run'
+                on_release:
+                halign: 'center'
+                on_release: root.send2()
+
+<EssentialScreen5>:
+    name: 'es5'
+    BoxLayout:
+        orientation: 'horizontal'
+        EssentialList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Disable Robot\n\n\nPlease don\'t press any button until the action is done'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+            Button:
+                background_color: 3, 0.5, 0.5, 0.8
+                text: 'Run'
+                on_release:
+                halign: 'center'
+                on_release: root.send2()
+
+<CustomScreen>:
+    name: 'cs'
+    BoxLayout:
+        orientation: 'horizontal'
+        CustomList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Click on the element of the list you want to run for more details'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+
+<HelloScreen>:
+    name: 'hello'
+    BoxLayout:
+        orientation: 'horizontal'
+        CustomList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Hello Baxter\n\nGreetings movement with the arms\n\n\nPlease don\'t press any button until the action is done'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+            Button:
+                background_color: 3, 0.5, 0.5, 0.8
+                text: 'Run'
+                on_release:
+                halign: 'center'
+                on_release: root.open_cylinder()
+
+<OpenCylinderScreen>:
+    name: 'cylinder'
+    BoxLayout:
+        orientation: 'horizontal'
+        CustomList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Open Cylinder\n\nScript which shows how Baxter\ncan disassemble a cylinder and store the pieces\n\n\nPlease don\'t press any button until the action is done'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+            Button:
+                background_color: 3, 0.5, 0.5, 0.8
+                text: 'Run'
+                on_release:
+                halign: 'center'
+                on_release: root.open_cylinder()
+
+<CameraStreamScreen>:
+    name: 'camera'
+    BoxLayout:
+        orientation: 'horizontal'
+        CustomList:
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Camera Stream\n\nSends the camera image to baxter\'s display\n\n Due to Baxter thread limitations, permanent process are not suggested to run using this UI, if you do, kill the server and client process when desired\n\n Alternatively, this process can be executed in other terminal using the script with rosrun'
+                text_size: self.size
+                halign: 'center'
+                valign: 'middle'
+                size_hint: 1,2
+            Button:
+                background_color: 3, 0.5, 0.5, 0.8
+                text: 'Run'
+                on_release:
+                halign: 'center'
+                on_release: root.open_cylinder()
+
+
+ScreenManagement:
+    transition: ft.WipeTransition()
+    ConnectionScreen:
+    MainScreen:
+    AboutScreen:
+
+
+<Manager1>
+    transition: ft.NoTransition()
+    CustomScreen:
+    HelloScreen:
+    OpenCylinderScreen:
+    CameraStreamScreen:
+
+
+<Manager2>
+    transition: ft.NoTransition()
+    EssentialScreen:
+    EssentialScreen1:
+    EssentialScreen2:
+    EssentialScreen3:
+    EssentialScreen4:
+    EssentialScreen5:
