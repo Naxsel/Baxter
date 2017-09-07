@@ -94,9 +94,10 @@
                 font_size: 18
                 pos: 20,-60
             Label:
-                text:'$ rosrun baxter_examples server.py\n\n Then click on the Connect Button\n\nEnsure that the IPs are correctly set on the server and client files'
+                text:'$ rosrun baxter_examples server.py\nThen click on the Connect Button\n\nEnsure that the IPs are correctly set on the server and client files'
                 font_size: 18
-                pos: 20,-105
+                pos: 20,-115
+                halign: 'center'
             Label:
                 text: 'This application belongs to a research project concerning the use of the Baxter in the Factory of the Future'
                 font_size: 16
@@ -152,20 +153,14 @@
     size_hint: .4,1
     orientation: 'vertical'
     Button:
-        text: 'Enable Robot'
+        text: 'Move to Neutral'
         on_release: self.parent.parent.parent.parent.current = 'es1'
     Button:
-        text: 'Move to Neutral'
+        text: 'Joint Velocity Wobbler'
         on_release: self.parent.parent.parent.parent.current = 'es2'
     Button:
-        text: 'Joint Velocity Wobbler'
-        on_release: self.parent.parent.parent.parent.current = 'es3'
-    Button:
         text: 'Head Wobbler'
-        on_release: self.parent.parent.parent.parent.current = 'es4'
-    Button:
-        text: 'Disable Robot'
-        on_release: self.parent.parent.parent.parent.current = 'es5'
+        on_release: self.parent.parent.parent.parent.current = 'es3'
 
 <CustomList>:
     size_hint: .4,1
@@ -203,7 +198,7 @@
         BoxLayout:
             orientation: 'vertical'
             Label:
-                text: 'Enable Robot\n\n\nPlease don\'t press any button until the action is done'
+                text: 'Move to Neutral\n\nSets Baxter on a default position, including arms head and gripers\n\n\nPlease don\'t press any button until the action is done'
                 text_size: self.size
                 halign: 'center'
                 valign: 'middle'
@@ -223,7 +218,7 @@
         BoxLayout:
             orientation: 'vertical'
             Label:
-                text: 'Move to Neutral\n\nSets Baxter on a default position, including arms head and gripers\n\n\nPlease don\'t press any button until the action is done'
+                text: 'Joint Velocity Wobbler\n\nArm Joints Test\n\n\nPlease don\'t press any button until the action is done'
                 text_size: self.size
                 halign: 'center'
                 valign: 'middle'
@@ -243,47 +238,7 @@
         BoxLayout:
             orientation: 'vertical'
             Label:
-                text: 'Joint Velocity Wobbler\n\nArm Joints Test\n\n\nPlease don\'t press any button until the action is done'
-                text_size: self.size
-                halign: 'center'
-                valign: 'middle'
-                size_hint: 1,2
-            Button:
-                background_color: 3, 0.5, 0.5, 0.8
-                text: 'Run'
-                on_release:
-                halign: 'center'
-                on_release: root.run()
-
-<EssentialScreen4>:
-    name: 'es4'
-    BoxLayout:
-        orientation: 'horizontal'
-        EssentialList:
-        BoxLayout:
-            orientation: 'vertical'
-            Label:
                 text: 'Head Wobbler\n\nHead Movement Test\n\n\nPlease don\'t press any button until the action is done'
-                text_size: self.size
-                halign: 'center'
-                valign: 'middle'
-                size_hint: 1,2
-            Button:
-                background_color: 3, 0.5, 0.5, 0.8
-                text: 'Run'
-                on_release:
-                halign: 'center'
-                on_release: root.run()
-
-<EssentialScreen5>:
-    name: 'es5'
-    BoxLayout:
-        orientation: 'horizontal'
-        EssentialList:
-        BoxLayout:
-            orientation: 'vertical'
-            Label:
-                text: 'Disable Robot\n\n\nPlease don\'t press any button until the action is done'
                 text_size: self.size
                 halign: 'center'
                 valign: 'middle'
@@ -391,5 +346,3 @@ ScreenManagement:
     EssentialScreen1:
     EssentialScreen2:
     EssentialScreen3:
-    EssentialScreen4:
-    EssentialScreen5:

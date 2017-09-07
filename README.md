@@ -3,11 +3,13 @@
 ###![alt text](http://sdk.rethinkrobotics.com/mediawiki-1.22.2/skins/cavendishmw-rethinkrobotics/styles/images/header_logo.png)
 Project in Python with Baxter Research Robot - [Link](http://sdk.rethinkrobotics.com/wiki/Main_Page)
 
+Check the pdf file for the project description
+
 ###Objetives
 1. Installation of appropriate software as well as communication tools to create an integrated programming environment for Baxter Robot
 2. Testing and gaining appropriate knowledge to work with Baxter Robot and its accessories.
-3. Design and implementation of a communication model between Baxter Robot and IEC61499 industrial automation model.
-4. Design and implementation of a simple operational scenario for Baxter Robot, to test the usability of the suggested communication model.
+3. Design and implementation of a simple operational scenario for Baxter Robot, to test the usability of the suggested communication model.
+4. Develop a cross platform user interface to control some of the Baxter functions
 
 #### Enviroment SetUp
 
@@ -32,6 +34,6 @@ Project in Python with Baxter Research Robot - [Link](http://sdk.rethinkrobotics
 #### User Interface
 1. Run the server.py in a instance of the baxter.sh script as mentioned before with `rosrun`
     * You may need to edit the ip address at the beginning of the file and locate all the files inside the ros_ws folder. Check cpCore.sh inside scripts folder to automate the process
-2. Execute the client script via python in the same workstation or other located in the same network with the correct IP address   
+2. Execute the client script via python in the same workstation or in other machine located in the same network with the correct IP address   
 ![](images/gui.png)
 Notes: Careful if you try to run a process without ending via the client, due python scripts are executed using the baxter terminal instance you can't run more than one process for each instance

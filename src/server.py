@@ -3,10 +3,10 @@
 import socket               # Import socket module
 import thread
 import time
-# import rospy
-# import baxter_interface
-# from baxter_interface import CHECK_VERSION
-# import baxter_essentials
+import rospy
+import baxter_interface
+from baxter_interface import CHECK_VERSION
+import baxter_essentials
 import baxter_custom
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # Create a socket object
@@ -28,29 +28,22 @@ while True:
 
         if code == "es1":
             c.send("ok")
-            # rs = baxter_interface.RobotEnable(CHECK_VERSION)
-            # rs.enable()
+            thread.start_new_thread(baxter_custom.move_to_neutral.run(), [])
         elif code == "es2":
             c.send("ok")
-            # thread.start_new_thread(baxter_custom.move_to_neutral.run(), [])
+            thread.start_new_thread(baxter_custom.joint_wobbler.main(), [])
         elif code == "es3":
             c.send("ok")
-            # thread.start_new_thread(baxter_custom.joint_wobbler.main(), [])
-        elif code == "es4":
-            c.send("ok")
-        elif code == "es5":
-            c.send("ok")
-            # rs = baxter_interface.RobotEnable(CHECK_VERSION)
-            # rs.disable()
+            thread.start_new_thread(baxter_custom.head_wobbler.main(), [])
         elif code == "cs1":
             c.send("ok")
-            # thread.start_new_thread(baxter_custom.hello.run(), [])
+            thread.start_new_thread(baxter_custom.hello.run(), [])
         elif code == "cs2":
             c.send("ok")
-            # thread.start_new_thread(baxter_custom.open_cylinder.run(), [])
+            thread.start_new_thread(baxter_custom.open_cylinder.run(), [])
         elif code == "cs3":
             c.send("ok")
-            # thread.start_new_thread(baxter_custom.camera_stream.run(), [])
+            thread.start_new_thread(baxter_custom.camera_stream.run(), [])
     print("Disconnected")
     c.send('Thank you for connecting')
     c.close()                # Close the connection

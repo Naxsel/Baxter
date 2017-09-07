@@ -122,23 +122,12 @@ class EssentialScreen3(Screen):
         s.send("es3")
         s.recv(1024)
 
-class EssentialScreen4(Screen):
-    def run(self):
-        global s
-        s.send("es4")
-        s.recv(1024)
-
-class EssentialScreen5(Screen):
-    def run(self):
-        global s
-        s.send("es5")
-        s.recv(1024)
-
 class CustomScreen(Screen):
     pass
 
 class CustomList(BoxLayout):
     pass
+
 class HelloScreen(Screen):
     def run(self):
         global s
